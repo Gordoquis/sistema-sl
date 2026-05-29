@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Level Up System - Sistema de leveling inspirado em Solo Leveling">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Level Up">
+    
+    <title>Level Up System</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Hero Header -->
+        <header class="hero-header">
+            <div class="hero-image-container">
+                <img src="assets/jin-woo-cover.png" alt="Sung Jin-Woo" class="hero-image">
+                <div class="hero-gradient-overlay"></div>
+            </div>
+            
+            <div class="hero-ui-overlay">
+                <div class="top-bar">
+                    <div class="system-title">LEVEL UP SYSTEM</div>
+                    <button class="direct-install-btn" id="installBtn" style="display: none;">
+                        <span class="icon">⚡</span> INSTALAR APP
+                    </button>
+                </div>
+
+                <div class="player-hud">
+                    <div class="hud-level-box">
+                        <div class="hud-label">NÍVEL</div>
+                        <div class="hud-number" id="playerLevel">1</div>
+                    </div>
+                    <div class="hud-player-details">
+                        <div class="hud-name" id="playerName">SUNG JIN-WOO</div>
+                        <div class="hud-rank" id="playerRank">E-RANK</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- XP Bar -->
+        <div class="xp-bar-section">
+            <div class="xp-bar-container">
+                <div class="xp-bar" id="xpBar"></div>
+                <p class="xp-text" id="xpText">0 / 100 XP</p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="input-wrapper">
+                    <input 
+                        type="text" 
+                        id="taskInput" 
+                        class="task-input" 
+                        placeholder="Adicione uma nova missão..."
+                        autocomplete="off"
+                    >
+                    <button class="add-btn" id="addBtn">
+                        <span class="add-icon">+</span>
+                    </button>
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Todas</button>
+                    <button class="filter-btn" data-filter="active">Ativas</button>
+                    <button class="filter-btn" data-filter="completed">Concluídas</button>
+                </div>
+            </section>
+
+            <!-- Tasks List -->
+            <section class="tasks-section">
+                <div class="tasks-list" id="tasksList">
+                    <!-- Tasks will be inserted here -->
+                </div>
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-icon">⚔️</div>
+                    <p class="empty-text">Nenhuma missão por aqui!</p>
+                    <p class="empty-subtext">Adicione uma missão para começar sua jornada</p>
+                </div>
+            </section>
+
+            <!-- Attributes Grid -->
+            <section class="attributes-section">
+                <h3 class="section-title">ATRIBUTOS</h3>
+                <div class="attributes-grid">
+                    <div class="attribute-card">
+                        <span class="attr-icon">💪</span>
+                        <span class="attr-name">Força</span>
+                        <span class="attr-value" id="attrStr">10</span>
+                    </div>
+                    <div class="attribute-card">
+                        <span class="attr-icon">⚡</span>
+                        <span class="attr-name">Agilidade</span>
+                        <span class="attr-value" id="attrAgi">10</span>
+                    </div>
+                    <div class="attribute-card">
+                        <span class="attr-icon">🧠</span>
+                        <span class="attr-name">Inteligência</span>
+                        <span class="attr-value" id="attrInt">10</span>
+                    </div>
+                    <div class="attribute-card">
+                        <span class="attr-icon">❤️</span>
+                        <span class="attr-name">Vitalidade</span>
+                        <span class="attr-value" id="attrVit">10</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalTasks">0</div>
+                    <div class="stat-label">Missões</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="activeTasks">0</div>
+                    <div class="stat-label">Ativas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="completedTasks">0</div>
+                    <div class="stat-label">Concluídas</div>
+                </div>
+            </section>
+
+            <!-- Action Buttons -->
+            <section class="actions-section">
+                <button class="action-btn clear-btn" id="clearBtn">
+                    <span class="action-icon">🗑️</span> Limpar Concluídas
+                </button>
+                <button class="action-btn export-btn" id="exportBtn">
+                    <span class="action-icon">📥</span> Exportar Dados
+                </button>
+                <button class="action-btn reset-btn" id="resetBtn">
+                    <span class="action-icon">🔄</span> Resetar Progresso
+                </button>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Level Up System v2.0 • Funciona offline • Dados salvos localmente</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
